@@ -98,10 +98,10 @@ def main():
 
         # Backpropagation
         bkProp_error = labels - predicted_output
-        d_predicted_output = bkProp_error * sigmoidDerivative(predicted_output)
+        d_predicted_output = bkProp_error * tanhDerivative(predicted_output)
 
         error_hidden_layer = d_predicted_output.dot(weightsLayer2.T)
-        d_hidden_layer = error_hidden_layer * sigmoidDerivative(hidden_layer_output)
+        d_hidden_layer = error_hidden_layer * tanhDerivative(hidden_layer_output)
 
 
         # Updating Weights and Biases
