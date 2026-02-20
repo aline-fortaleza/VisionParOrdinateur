@@ -83,6 +83,14 @@ def main():
         hidden_layer_output = forwardPropagationLayer(points, weightsLayer1, biasLayer1)
         predicted_output = forwardPropagationLayer(hidden_layer_output, weightsLayer2, biasLayer2)
 
+        # Calculate the error and break when error < 0.01
+        N = len(labels)
+        C = (1/N) * np.sum((labels - predicted_output)**2) # Mean Squared Error given in the pdf
+
+        if C < 0.01:
+            print(f"Minimum epochs = {_} (C = {C})")
+            break
+
         # Backpropagation
         bkProp_error = labels - predicted_output
         d_predicted_output = bkProp_error * sigmoidDerivative(predicted_output)
